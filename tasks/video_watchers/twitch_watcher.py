@@ -11,7 +11,6 @@ from netunicorn.base import Result, Success, Task, TaskDispatcher
 from netunicorn.base.architecture import Architecture
 from netunicorn.base.nodes import Node
 
-
 def watch(
     url: str, duration: int = 10, chrome_location: Optional[str] = None, webdriver_arguments: Optional[list] = None
 ) -> Result[str, str]:
@@ -50,7 +49,7 @@ class WatchTwitchStream(TaskDispatcher):
     def __init__(
             self,
             video_url: str,
-            duration: Optional[int] = None,
+            duration: int = 10,
             chrome_location: Optional[str] = None,
             webdriver_arguments: Optional[list] = None,
             *args, **kwargs
@@ -86,7 +85,7 @@ class WatchTwitchStreamLinuxImplementation(Task):
     def __init__(
             self,
             video_url: str,
-            duration: int = 10,
+            duration: int,
             chrome_location: Optional[str] = None,
             webdriver_arguments: Optional[list] = None,
             *args, **kwargs
@@ -101,7 +100,3 @@ class WatchTwitchStreamLinuxImplementation(Task):
 
     def run(self):
         return watch(self.video_url, self.duration, self.chrome_location, self.webdriver_arguments)
-
-
-if __name__ == "__main__":
-    print(watch("https://www.twitch.tv/videos/1592059689", 10))

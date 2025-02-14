@@ -1,2 +1,9 @@
 .idea
-*.log
+*.
+
+__pycache__
+
+venv
+.env
+test.*
+/data
